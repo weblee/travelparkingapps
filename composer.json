@@ -1,6 +1,5 @@
 {
     "name": "weblee/travelparkingapps",
-    "type": "package",
     "description" : "TravelParkingApps Library ",
     "keywords": ["parking", "api"],
     "license": "MIT",
