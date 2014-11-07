@@ -1,19 +1,45 @@
 <?php namespace TravelParkingApps;
 
+/**
+ * Class Client
+ * @package TravelParkingApps
+ */
 class Client
 {
+    /**
+     * @var string
+     */
     private $nameSpace = 'https://www.travelparkingapps.com/api/v3';
 
+    /**
+     * @var string
+     */
     private $wsdl = 'http://dev.travelparkingapps.com';
 
+    /**
+     * @var string
+     */
     private $apikey = '';
 
+    /**
+     * @var string
+     */
     private $client = '';
 
+    /**
+     * @var string
+     */
     private $results = '';
 
+    /**
+     * @var string
+     */
     private $errors = '';
 
+    /**
+     * @param $apikey
+     * @param string $wsdl
+     */
     function __construct($apikey, $wsdl = '')
     {
         if (empty($apikey))
@@ -24,6 +50,11 @@ class Client
         $this->wsdl = $wsdl;
     }
 
+    /**
+     * @param $service
+     * @param $action
+     * @param array $params
+     */
     public function request($service, $action, $params = [])
     {
         $this->buildSoapService($service);
@@ -36,6 +67,9 @@ class Client
         }
     }
 
+    /**
+     * @param $service
+     */
     private function buildSoapService($service)
     {
         $wsdl = "{$this->wsdl}/api/v3/{$service}.svc?wsdl";
@@ -44,11 +78,17 @@ class Client
         $this->client->__setSoapHeaders($headers);
     }
 
+    /**
+     * @return string
+     */
     public function results()
     {
         return $this->results;
     }
 
+    /**
+     * @return string
+     */
     public function errors()
     {
         return $this->errors;
