@@ -1,0 +1,26 @@
+{
+    "name": "weblee/travelparkingapps",
+    "type": "library",
+    "description" : "TravelParkingApps Library ",
+    "keywords": ["parking", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name" : "Lee Smith",
+            "email" : "lee@weblee.co.uk",
+            "homepage" : "https://github.com/weblee/",
+            "role" : "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "TravelParkingApps\\": "src"
+        }
+    }
+}
