@@ -1,9 +1,10 @@
 {
     "name": "weblee/travelparkingapps",
-    "type": "library",
+    "type": "package",
     "description" : "TravelParkingApps Library ",
     "keywords": ["parking", "api"],
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name" : "Lee Smith",
