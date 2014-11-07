@@ -4,7 +4,7 @@ class Client
 {
     private $nameSpace = 'https://www.travelparkingapps.com/api/v3';
 
-    private $wsdl = 'http://dev.travelparkingapps.com/api';
+    private $wsdl = 'http://dev.travelparkingapps.com';
 
     private $apikey = '';
 
@@ -38,7 +38,7 @@ class Client
 
     private function buildSoapService($service)
     {
-        $wsdl = "{$this->wsdl}/v3/{$service}.svc?wsdl";
+        $wsdl = "{$this->wsdl}/api/v3/{$service}.svc?wsdl";
         $this->client = new \SoapClient($wsdl);
         $headers = new \SoapHeader($this->nameSpace, 'ApiKey', $this->apikey);
         $this->client->__setSoapHeaders($headers);

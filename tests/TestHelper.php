@@ -1,7 +1,7 @@
 <?php
 
 define('API_KEY', 'api-key');
-define('WSDL', 'http://dev.travelparkingapps.com/api');
+define('WSDL', 'http://dev.travelparkingapps.com');
 
 function print_results($results)
 {
