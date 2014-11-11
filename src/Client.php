@@ -62,7 +62,7 @@ class Client
         try {
             $this->results = $this->client->$action($params);
             return true;
-        } catch (SoapFault $exception) {
+        } catch (\SoapFault $exception) {
             $this->errors = $exception;
         }
     }
