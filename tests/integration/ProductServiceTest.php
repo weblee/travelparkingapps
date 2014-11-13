@@ -3,7 +3,7 @@ require_once realpath(dirname(__FILE__)) . '/../TestHelper.php';
 
 use TravelParkingApps\Client;
 
-class ProductService  extends \PHPUnit_Framework_TestCase
+class ProductServiceTest  extends \PHPUnit_Framework_TestCase
 {
     protected $soapClient;
 
@@ -19,7 +19,7 @@ class ProductService  extends \PHPUnit_Framework_TestCase
     {
         $params = [
             'product'       => '',
-            'airportCode'   => 'LGW'
+            'airportCode'   => 'ABZ'
         ];
 
         $this->soapClient->request('ProductService', 'FindAirportParkingProducts', $params);

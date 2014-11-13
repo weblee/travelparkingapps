@@ -54,6 +54,7 @@ class Client
      * @param $service
      * @param $action
      * @param array $params
+     * @return bool
      */
     public function request($service, $action, $params = [])
     {
@@ -64,6 +65,7 @@ class Client
             return true;
         } catch (\SoapFault $exception) {
             $this->errors = $exception;
+            return false;
         }
     }
 
