@@ -24,12 +24,27 @@ class Client
     /**
      * @var string
      */
-    private $client = '';
+    private $client;
 
     /**
      * @var string
      */
-    private $results = '';
+    private $results;
+
+    /**
+     * @var
+     */
+    private $requestHeaders;
+
+    /**
+     * @var
+     */
+    private $responseHeaders;
+
+    /**
+     * @var
+     */
+    private $lastRequest;
 
     /**
      * @var string
@@ -51,6 +66,8 @@ class Client
     }
 
     /**
+     * Send Soap Request
+     *
      * @param $service
      * @param $action
      * @param array $params
@@ -62,6 +79,9 @@ class Client
 
         try {
             $this->results = $this->client->$action($params);
+            $this->responseHeaders = $this->client->__getLastResponseHeaders();
+            $this->requestHeaders = $this->client->__getLastRequestHeaders();
+            $this->lastRequest = $this->client->__getLastRequest();
             return true;
         } catch (\SoapFault $exception) {
             $this->errors = $exception;
@@ -70,17 +90,21 @@ class Client
     }
 
     /**
+     * Build Soap Service
+     *
      * @param $service
      */
     private function buildSoapService($service)
     {
         $wsdl = "{$this->wsdl}/api/v3/{$service}.svc?wsdl";
-        $this->client = new \SoapClient($wsdl);
+        $this->client = new \SoapClient($wsdl, ['trace' => 1]);
         $headers = new \SoapHeader($this->nameSpace, 'ApiKey', $this->apikey);
         $this->client->__setSoapHeaders($headers);
     }
 
     /**
+     * Soap Results
+     *
      * @return string
      */
     public function results()
@@ -89,6 +113,38 @@ class Client
     }
 
     /**
+     * Soap Request Headers
+     *
+     * @return mixed
+     */
+    public function requestHeaders()
+    {
+        return $this->requestHeaders;
+    }
+
+    /**
+     * Soap Response Headers
+     *
+     * @return mixed
+     */
+    public function responseHeaders()
+    {
+        return $this->requestHeaders;
+    }
+
+    /**
+     * Soap Last Request
+     *
+     * @return mixed
+     */
+    public function lastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    /**
+     * Soap Errors
+     *
      * @return string
      */
     public function errors()

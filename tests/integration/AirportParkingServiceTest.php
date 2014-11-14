@@ -23,6 +23,7 @@ class AirportParkingServiceTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertNotEmpty($results);
         $this->assertTrue(is_array($results->SearchAvailabilityResult->Availability->QuoteAvailabilityItemDTO));
+        $this->assertNotEmpty($results->SearchAvailabilityResult->Id); // The Uuid
     }
 
     /**
@@ -36,6 +37,7 @@ class AirportParkingServiceTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertNotEmpty($results);
         $this->assertFalse(is_array($results->SearchAvailabilityResult->Availability->QuoteAvailabilityItemDTO));
+        $this->assertNotEmpty($results->SearchAvailabilityResult->Id); // The Uuid
     }
 
     protected function tearDown()
@@ -43,6 +45,14 @@ class AirportParkingServiceTest extends \PHPUnit_Framework_TestCase {
         unset($this->soapClient);
     }
 
+    /**
+     * Set Search Params
+     *
+     * @param string $airportCode
+     * @param $fromDate
+     * @param $toDate
+     * @return array
+     */
     private function search_params( $airportCode = 'LHR', $fromDate, $toDate )
     {
         return [
